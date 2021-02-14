@@ -7,7 +7,7 @@ const UserList = (props) => {
 
     const [list, setList] = useState([]);
     useEffect(() => {
-        axios.get(`${props.baseUrl}/users`)
+        axios.get(`http://localhost:3001/users`)
             .then(res => {
                 const users = res.data;
                 setList(users);

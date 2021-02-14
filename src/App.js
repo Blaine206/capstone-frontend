@@ -7,7 +7,8 @@ import {
   Link
 } from "react-router-dom";
 import UserList from './Components/UserList';
-import Homepage from './Components/Hompage';
+import Nav from './Components/Nav';
+import EventFeed from './Components/EventFeed';
 // import User from './Components/User';
 
 
@@ -17,15 +18,16 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Switch>
-        <Route path="/" exact component={Homepage}  />
-          <Route path="/users" component={UserList}  />
-        </Switch>
+          <Route path="/users" component={UserList} />
+          <Route path="/events" component={EventFeed} />
+          <Route path="/" exact component={Nav} />
+         {/* <UserList baseUrl={BASE_URL} />
+         <EventFeed baseUrl={BASE_URL} /> */}
       </div>
     </Router>
   );
 }
 
 export default App;
-{/* <UserList baseUrl={BASE_URL} /> */}
+
 {/* <User baseUrl={BASE_URL} id={1}/> */}

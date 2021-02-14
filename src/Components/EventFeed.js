@@ -1,29 +1,29 @@
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
-// import User from './Event';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+// import Event from './Event';
 
-// const UserList = (props) => {
+const EventFeed = (props) => {
 
-//     const [list, setList] = useState([]);
-//     useEffect(() => {
-//         axios.get(`${props.baseUrl}/events`)
-//             .then(res => {
-//                 const events = res.data;
-//                 setList(events);
-//             })
-//             .catch((error) => {
-//                 console.log(error)
-//             })
-//     }, [props.baseUrl]);
+    const [feed, setFeed] = useState([]);
+    useEffect(() => {
+        axios.get(`http://localhost:3001/events`)
+            .then(res => {
+                const events = res.data;
+                setFeed(events);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [props.baseUrl]);
 
 
-//     return (
-//         <div>
-//             <ul>
-//                 {list.map(user => <li>{user.name}</li>)}
-//             </ul>
-//         </div>
-//     )
-// }
+    return (
+        <div>
+            <ul>
+                {feed.map(event => <li>{event.title}</li>)}
+            </ul>
+        </div>
+    )
+}
 
-// export default UserList;
+export default EventFeed;
