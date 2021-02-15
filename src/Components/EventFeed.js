@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-// import Event from './Event';
+import { Link } from "react-router-dom";
+import Nav from './Nav'
+// import EventDetails from './EventDetails';
 
 const EventFeed = (props) => {
 
@@ -19,8 +21,9 @@ const EventFeed = (props) => {
 
     return (
         <div>
+            <Nav></Nav>
             <ul>
-                {feed.map(event => <li>{event.title}</li>)}
+                {feed.map(event => <Link><li>{event.title}</li></Link>)}
             </ul>
         </div>
     )

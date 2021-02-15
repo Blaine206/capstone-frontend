@@ -6,7 +6,6 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import UserList from './Components/UserList';
 import Nav from './Components/Nav';
 import EventFeed from './Components/EventFeed';
 // import User from './Components/User';
@@ -18,16 +17,16 @@ function App() {
   return (
     <Router>
       <div className="App">
-          <Route path="/users" component={UserList} />
-          <Route path="/events" component={EventFeed} />
+        <Switch>
           <Route path="/" exact component={Nav} />
-         {/* <UserList baseUrl={BASE_URL} />
-         <EventFeed baseUrl={BASE_URL} /> */}
+          <Route path="/events" component={EventFeed} />
+        </Switch>
       </div>
     </Router>
   );
 }
 
 export default App;
-
+ {/* <UserList baseUrl={BASE_URL} />
+  <EventFeed baseUrl={BASE_URL} /> */}
 {/* <User baseUrl={BASE_URL} id={1}/> */}
