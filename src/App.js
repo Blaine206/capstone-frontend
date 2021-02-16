@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -6,6 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import axios from 'axios';
 import Nav from './Components/Nav';
 import EventFeed from './Components/EventFeed';
 import GoogleLogin from 'react-google-login';
@@ -13,10 +13,11 @@ import { useState } from 'react';
 // import Login from '.Components/Login'
 // import User from './Components/User';
 
-
 // const BASE_URL = 'http://localhost:3001'
 
 function App() {
+
+  const [user, setUser] = useState({});
 
   const [name, setName] = useState('');
 
@@ -28,14 +29,37 @@ function App() {
     setName(response.profileObj.name);
     setEmail(response.profileObj.email);
     setUrl(response.profileObj.imageUrl);
-    // console.log(name);
+    axios
+      .post("/auth/signin", {
+        id_token: response.getAuthResponse().id_token,
+      })
+      .then((response) => {
+        setUser(response.data.user);
+      });
+
+    refreshTokenSetup(response);
   };
 
 // axios call post to users saving email and name for user, check for existing email
 
-//  const setNav = (name, email, url) => {
-//     return <Nav>name={name} email={email} url={url}</Nav> 
-//   }
+  const onFailure = (res) => {
+    console.log("[Login Failed] res:", res);
+  };
+
+  const refreshTokenSetup = (res) => {
+    let refreshTiming = (res.tokenObj.expires_in || 3600 - 5 * 60) * 1000;
+
+    const refreshToken = async () => {
+      const newAuthRes = await res.reloadAuthResponse();
+      refreshTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000;
+      console.log("newAuthRes:", newAuthRes);
+      console.log("new auth Token", newAuthRes.id_token);
+      setTimeout(refreshToken, refreshTiming);
+    };
+
+    setTimeout(refreshToken, refreshTiming);
+  };
+
 
   return (
     <Router>
@@ -44,7 +68,7 @@ function App() {
           clientId="422134929902-nl2c86n17fm0nrk2kkvt3sl8v4cf39h3.apps.googleusercontent.com"
           buttonText="Login"
           onSuccess={responseGoogle}
-          onFailure={responseGoogle}
+          onFailure={onFailure}
           cookiePolicy={'single_host_origin'}
         />
         <Switch>
