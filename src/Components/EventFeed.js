@@ -21,7 +21,7 @@ const EventFeed = (props) => {
 
     return (
         <div>
-            <Nav></Nav>
+            <Nav name={props.name} email={props.email} url={props.url}/>
             <ul>
                 {feed.map(event => <Link><li>{event.title}</li></Link>)}
             </ul>
