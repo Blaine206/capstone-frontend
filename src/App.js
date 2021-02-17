@@ -10,6 +10,8 @@ import Nav from './Components/Nav';
 import EventFeed from './Components/EventFeed';
 import GoogleLogin from 'react-google-login';
 import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 // import Login from '.Components/Login'
 // import User from './Components/User';
 
@@ -73,7 +75,7 @@ function App() {
         />
         <Switch>
           <Route exact path="/">
-            <Nav name={name} email={email} url={url}/>
+            <Nav />
           </Route> 
           <Route path="/events" component={EventFeed} />
         </Switch>
@@ -83,6 +85,7 @@ function App() {
 }
 
 export default App;
+
 // {/* <Route path="/login" component={Login}/> */}
 //  {/* <UserList baseUrl={BASE_URL} />
 //   <EventFeed baseUrl={BASE_URL} /> */}

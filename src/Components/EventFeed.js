@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import Nav from './Nav'
+import { Card , Button } from 'react-bootstrap'; 
 // import EventDetails from './EventDetails';
 
 const EventFeed = (props) => {
@@ -18,15 +19,40 @@ const EventFeed = (props) => {
             })
     }, [props.baseUrl]);
 
+// feed = array of event objects
+
+    const renderCard = (card, index) => {
+        return (
+            <Card style={{ width: '18rem' }} key={index} className="box">
+            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Body>
+                <Card.Title>
+                    {card.title}
+                </Card.Title>
+                <Card.Text>
+                    <ul>
+                        <li>{card.creator}</li>
+                        <li>{card.location}</li>
+                    </ul>
+                </Card.Text>
+                <Button variant="primary">Interested</Button>
+            </Card.Body>
+            </Card>
+        )
+    }
 
     return (
-        <div>
-            <Nav name={props.name} email={props.email} url={props.url}/>
-            <ul>
-                {feed.map(event => <Link><li>{event.title}</li></Link>)}
-            </ul>
+        <div> 
+            <Nav/>
+            <div className="grid">
+                {feed.map(event => renderCard(event))}
+            </div>
         </div>
     )
 }
 
 export default EventFeed;
+
+// <ul>
+//     {feed.map(event => <Card body><li>{event.title}</li></Card>)}
+// </ul>

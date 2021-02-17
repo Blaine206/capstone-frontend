@@ -52,3 +52,6 @@ const Login = ({ setUser }) => {
 };
 
 export default Login;
+
+// import { Link } from 'react-router-dom';
+{/* <div><Link to='/'>Home</Link></div> */}

@@ -20,7 +20,7 @@ const Nav = (props) => {
             </ul>
             <img src={props.url} alt={props.name} /> 
             <ul className="nav_links">
-                <Link style={navStyle} to='/login'>
+                <Link style={navStyle} to='/signin'>
                     <li>Login</li>
                 </Link>
                 <Link style={navStyle} to='/events'>

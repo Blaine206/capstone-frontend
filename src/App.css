@@ -18,3 +18,18 @@ nav {
   align-items: center;
   /* list-style: none; */
 }
+
+.box {
+  margin: auto;
+}
+
+.grid {
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.grid > div {
+  flex-basis: auto;
+}
