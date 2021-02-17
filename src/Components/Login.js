@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Nav from './Nav'
 import { navigate } from "@reach/router";
 import { GoogleLogin } from "react-google-login";
 
@@ -36,6 +37,7 @@ const Login = ({ setUser }) => {
 
     setTimeout(refreshToken, refreshTiming);
   };
+
 
   return (
     <div>

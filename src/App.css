@@ -2,6 +2,10 @@
   text-align: left;
 }
 
+/* .navStyle {
+  color: 'white'
+} */
+
 nav {
   display: flex;
   justify-content: space-around;
@@ -33,3 +37,4 @@ nav {
 .grid > div {
   flex-basis: auto;
 }
+

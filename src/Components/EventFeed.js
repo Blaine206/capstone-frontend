@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from "react-router-dom";
-import Nav from './Nav'
+// import { Link } from "react-router-dom";
+import Navigation from './Nav'
 import { Card , Button } from 'react-bootstrap'; 
 // import EventDetails from './EventDetails';
 
@@ -39,14 +39,15 @@ const EventFeed = (props) => {
             </Card.Body>
             </Card>
         )
-    }
+    };
 
     return (
         <div> 
-            <Nav/>
+            <Navigation />
             <div className="grid">
                 {feed.map(event => renderCard(event))}
             </div>
+            {EventFeed}
         </div>
     )
 }

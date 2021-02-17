@@ -6,11 +6,11 @@ import {
   Link
 } from "react-router-dom";
 import axios from 'axios';
-import Nav from './Components/Nav';
+import Navigation from './Components/Nav';
 import EventFeed from './Components/EventFeed';
 import GoogleLogin from 'react-google-login';
 import { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 // import Login from '.Components/Login'
 // import User from './Components/User';
@@ -18,25 +18,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // const BASE_URL = 'http://localhost:3001'
 
 function App() {
-
+  
   const [user, setUser] = useState({});
 
-  const [name, setName] = useState('');
+  // const [name, setName] = useState('');
 
-  const [email, setEmail] = useState('');
+  // const [email, setEmail] = useState('');
 
-  const [url, setUrl] = useState('');
+  // const [url, setUrl] = useState('');
 
   const responseGoogle = (response) => {
-    setName(response.profileObj.name);
-    setEmail(response.profileObj.email);
-    setUrl(response.profileObj.imageUrl);
+    // setName(response.profileObj.name);
+    // setEmail(response.profileObj.email);
+    // setUrl(response.profileObj.imageUrl);
     axios
       .post("/auth/signin", {
         id_token: response.getAuthResponse().id_token,
       })
       .then((response) => {
-        setUser(response.data.user);
+        console.log(response.data)
+        setUser(response.data);
       });
 
     refreshTokenSetup(response);
@@ -62,7 +63,6 @@ function App() {
     setTimeout(refreshToken, refreshTiming);
   };
 
-
   return (
     <Router>
       <div className="App">
@@ -75,7 +75,7 @@ function App() {
         />
         <Switch>
           <Route exact path="/">
-            <Nav />
+            <Navigation email={user.email} name={user.name} />
           </Route> 
           <Route path="/events" component={EventFeed} />
         </Switch>
