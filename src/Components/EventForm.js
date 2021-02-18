@@ -64,5 +64,3 @@ const EventForm = ({ user, onSubmit }) => {
 };
 
 export default EventForm;
-
-

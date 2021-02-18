@@ -7,6 +7,7 @@ import { Card , Button } from 'react-bootstrap';
 const EventFeed = (props) => {
 
     const [feed, setFeed] = useState([]);
+    
     useEffect(() => {
         axios.get(`http://localhost:3001/events`)
             .then(res => {

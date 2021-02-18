@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { } from 'react';
 import '../App.css';
 import { Link } from "react-router-dom";
 import { Navbar, Nav } from 'react-bootstrap';
 // import User from "./UserProfile"
 // import { Link } from 'react-router-dom';
 
-
 const Navigation = (props) => {
+
     const navStyle = {
         color: 'white',
-        // font-size: "20px"; 
-        // color: "#4a54f1";
-        // text-align: "center";
-        // padding-top:"100px";
     };
+
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -37,7 +34,8 @@ const Navigation = (props) => {
 };
 
 export default Navigation;
-{/* <Nav.Link href="login">Login</Nav.Link> */}
+
+// {/* <Nav.Link href="login">Login</Nav.Link> */}
 // <Link style={navStyle} to='/'>
 //     <h3>Tigary C.C.</h3>
 // </Link>

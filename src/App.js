@@ -11,6 +11,7 @@ import EventFeed from './Components/EventFeed';
 // import GoogleLogin from 'react-google-login';
 import { useState } from 'react';
 import Login from './Components/Login' 
+import Logout from './Components/Logout' 
 import EventForm from './Components/EventForm' 
 
 // import Login from '.Components/Login'
@@ -26,12 +27,12 @@ function App() {
   const createEvent = (formData) => {
     // how to hangle event creation only byb logged in user.
     console.log(formData)
-  // axios
-  //   .post('http://localhost:3001/create', formData)
-  //   .then(() => console.log('Event Created!'))
-  //   .catch(err => {
-  //     console.error(err);
-  //   });
+
+    axios.post('http://localhost:3001/events', formData)
+      .then(() => console.log('Event Created!'))
+      .catch(error => {
+        console.error(error);
+      });
   };
     // axios post & add creator with user.email
   console.log(user)
@@ -39,7 +40,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Login user={user} setUser={setUser} />
+        {Object.keys(user).length === 0? <Login user={user} setUser={setUser} /> : <Logout />}
         <Navigation email={user.email} name={user.name} />
         <Switch>
           <Route exact path="/"/> 
