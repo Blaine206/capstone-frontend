@@ -38,3 +38,54 @@ nav {
   flex-basis: auto;
 }
 
+.signup-form {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form--name-section {
+  display: flex;
+  width: 400px;
+  margin-left: 20px;
+}
+
+.signup-form--name-section div {
+  width: 100%;
+}
+
+.signup-form > div {
+  margin-left: 20px;
+  text-align: left;
+}
+
+.signup-form--title-name,
+.signup-form--last-name {
+  width: 199px;
+}
+
+.signup-form--last-name {
+  margin-left: 2px;
+}
+
+.signup-form--email,
+.signup-form--password {
+  width: 400px;
+}
+
+.signup-form input {
+  margin-bottom: 5px;
+}
+
+.signup-form--create-account-btn {
+  width: 400px;
+}
+
+.signup-form--create-account-btn .btn-success {
+  width: 400px;
+}
+
+.card-row {
+  display: block;
+}
+/* div = block span = inline (can be changed in css) */

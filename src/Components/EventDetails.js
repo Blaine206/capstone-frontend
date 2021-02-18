@@ -4,6 +4,7 @@ import axios from 'axios';
 import Nav from './Nav'
 import { Card , Button } from 'react-bootstrap'; 
 import EventFeed from './EventFeed'
+import Navigation from './Nav';
 
 const EventDetails = (props) => {
 
@@ -43,7 +44,7 @@ const EventDetails = (props) => {
 
     return (
         <div> 
-            <Nav/>
+            <Navigation />
         </div>
     )
 }

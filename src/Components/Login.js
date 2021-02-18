@@ -1,20 +1,20 @@
 import React from "react";
 import axios from "axios";
-import Nav from './Nav'
-import { navigate } from "@reach/router";
+// import Navigation from './Nav'
+// import { navigate } from "@reach/router";
 import { GoogleLogin } from "react-google-login";
 
-const clientId = "<CLIENT_ID>";
+const clientId = "422134929902-nl2c86n17fm0nrk2kkvt3sl8v4cf39h3.apps.googleusercontent.com";
 
-const Login = ({ setUser }) => {
+const Login = ({ user, setUser }) => {
   const onSuccess = (res) => {
     axios
       .post("/auth/signin", {
         id_token: res.getAuthResponse().id_token,
       })
       .then((res) => {
-        setUser(res.data.user);
-        navigate("/users");
+        setUser(res.data);
+        // navigate("/users");
       });
 
     refreshTokenSetup(res);
@@ -38,7 +38,6 @@ const Login = ({ setUser }) => {
     setTimeout(refreshToken, refreshTiming);
   };
 
-
   return (
     <div>
       <GoogleLogin
@@ -47,7 +46,7 @@ const Login = ({ setUser }) => {
         onSuccess={onSuccess}
         onFailure={onFailure}
         cookiePolicy={"single_host_origin"}
-        isSignedIn={true}
+        isSignedIn={user != null}
       />
     </div>
   );

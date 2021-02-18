@@ -8,9 +8,10 @@ import {
 import axios from 'axios';
 import Navigation from './Components/Nav';
 import EventFeed from './Components/EventFeed';
-import GoogleLogin from 'react-google-login';
+// import GoogleLogin from 'react-google-login';
 import { useState } from 'react';
-
+import Login from './Components/Login' 
+import EventForm from './Components/EventForm' 
 
 // import Login from '.Components/Login'
 // import User from './Components/User';
@@ -20,72 +21,45 @@ import { useState } from 'react';
 function App() {
   
   const [user, setUser] = useState({});
+  // Usually set to null then create safety checks
 
-  // const [name, setName] = useState('');
+  const createEvent = (formData) => {
+    // how to hangle event creation only byb logged in user.
+    console.log(formData)
 
-  // const [email, setEmail] = useState('');
-
-  // const [url, setUrl] = useState('');
-
-  const responseGoogle = (response) => {
-    // setName(response.profileObj.name);
-    // setEmail(response.profileObj.email);
-    // setUrl(response.profileObj.imageUrl);
-    axios
-      .post("/auth/signin", {
-        id_token: response.getAuthResponse().id_token,
-      })
-      .then((response) => {
-        console.log(response.data)
-        setUser(response.data);
-      });
-
-    refreshTokenSetup(response);
+    // axios
+    // .post('http://localhost:3001/create', book)
+    // .then(() => console.log('Book Created'))
+    // .catch(err => {
+    //   console.error(err);
+    // });
   };
-
-// axios call post to users saving email and name for user, check for existing email
-
-  const onFailure = (res) => {
-    console.log("[Login Failed] res:", res);
-  };
-
-  const refreshTokenSetup = (res) => {
-    let refreshTiming = (res.tokenObj.expires_in || 3600 - 5 * 60) * 1000;
-
-    const refreshToken = async () => {
-      const newAuthRes = await res.reloadAuthResponse();
-      refreshTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000;
-      console.log("newAuthRes:", newAuthRes);
-      console.log("new auth Token", newAuthRes.id_token);
-      setTimeout(refreshToken, refreshTiming);
-    };
-
-    setTimeout(refreshToken, refreshTiming);
-  };
-
+    // axios post & add creator with user.email
+  console.log(user)
   return (
     <Router>
       <div className="App">
-        <GoogleLogin
-          clientId="422134929902-nl2c86n17fm0nrk2kkvt3sl8v4cf39h3.apps.googleusercontent.com"
-          buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={onFailure}
-          cookiePolicy={'single_host_origin'}
-        />
+        <Login user={user} setUser={setUser} />
+        <Navigation email={user.email} name={user.name} />
         <Switch>
-          <Route exact path="/">
-            <Navigation email={user.email} name={user.name} />
-          </Route> 
+          <Route exact path="/"/> 
           <Route path="/events" component={EventFeed} />
+          <Route path="/eventform">
+            {Object.keys(user).length !== 0? <EventForm onSubmit={createEvent}/>: "Login to create event" }
+          </Route>
         </Switch>
       </div>
     </Router>
   );
-}
+};
 
 export default App;
-
+        // <GoogleLogin
+        //   clientId="422134929902-nl2c86n17fm0nrk2kkvt3sl8v4cf39h3.apps.googleusercontent.com"
+        //   buttonText="Login"
+        //   onSuccess={responseGoogle}
+        //   onFailure={onFailure}
+        //   cookiePolicy={'single_host_origin'}
 // {/* <Route path="/login" component={Login}/> */}
 //  {/* <UserList baseUrl={BASE_URL} />
 //   <EventFeed baseUrl={BASE_URL} /> */}

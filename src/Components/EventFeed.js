@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 // import { Link } from "react-router-dom";
-import Navigation from './Nav'
 import { Card , Button } from 'react-bootstrap'; 
 // import EventDetails from './EventDetails';
 
@@ -21,19 +20,17 @@ const EventFeed = (props) => {
 
 // feed = array of event objects
 
-    const renderCard = (card, index) => {
+    const renderCard = (card) => {
         return (
-            <Card style={{ width: '18rem' }} key={index} className="box">
+            <Card style={{ width: '18rem' }} key={card.id} className="box">
             <Card.Img variant="top" src="holder.js/100px180" />
             <Card.Body>
                 <Card.Title>
                     {card.title}
                 </Card.Title>
                 <Card.Text>
-                    <ul>
-                        <li>{card.creator}</li>
-                        <li>{card.location}</li>
-                    </ul>
+                    <span className="card-row">{card.creator}</span>
+                    <span className="card-row">{card.location}</span>      
                 </Card.Text>
                 <Button variant="primary">Interested</Button>
             </Card.Body>
@@ -43,14 +40,12 @@ const EventFeed = (props) => {
 
     return (
         <div> 
-            <Navigation />
             <div className="grid">
                 {feed.map(event => renderCard(event))}
             </div>
-            {EventFeed}
         </div>
-    )
-}
+    );
+};
 
 export default EventFeed;
 
