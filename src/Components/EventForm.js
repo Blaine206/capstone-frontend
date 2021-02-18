@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Form, Button, Col } from 'react-bootstrap'; 
 
-const EventForm = ({ onSubmit }) => {
+const EventForm = ({ user, onSubmit }) => {
 
     const [formData, updateFormData] = useState({
         title: "",
         date: "",
         location: "",
-        creator: ""
+        creator: user
     });
 
     const onFormFieldChange = (event) => {

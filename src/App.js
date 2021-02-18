@@ -26,16 +26,16 @@ function App() {
   const createEvent = (formData) => {
     // how to hangle event creation only byb logged in user.
     console.log(formData)
-
-    // axios
-    // .post('http://localhost:3001/create', book)
-    // .then(() => console.log('Book Created'))
-    // .catch(err => {
-    //   console.error(err);
-    // });
+  // axios
+  //   .post('http://localhost:3001/create', formData)
+  //   .then(() => console.log('Event Created!'))
+  //   .catch(err => {
+  //     console.error(err);
+  //   });
   };
     // axios post & add creator with user.email
   console.log(user)
+
   return (
     <Router>
       <div className="App">
@@ -43,9 +43,9 @@ function App() {
         <Navigation email={user.email} name={user.name} />
         <Switch>
           <Route exact path="/"/> 
-          <Route path="/events" component={EventFeed} />
+          <Route path="/events" component={EventFeed}/>
           <Route path="/eventform">
-            {Object.keys(user).length !== 0? <EventForm onSubmit={createEvent}/>: "Login to create event" }
+            {Object.keys(user).length !== 0? <EventForm user={user.email} onSubmit={createEvent}/>: "Login to create event" }
           </Route>
         </Switch>
       </div>
