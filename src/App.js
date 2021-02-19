@@ -2,8 +2,7 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import axios from 'axios';
 import Navigation from './Components/Nav';
@@ -40,7 +39,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {Object.keys(user).length === 0? <Login user={user} setUser={setUser} /> : <Logout />}
+        {Object.keys(user).length === 0? <Login user={user} setUser={setUser} /> : <Logout user={user} setUser={setUser}/>}
         <Navigation email={user.email} name={user.name} />
         <Switch>
           <Route exact path="/"/> 

@@ -15,13 +15,13 @@ const Navigation = (props) => {
         <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Navbar.Brand><Link style={navStyle} to='/'>Tigary C.C.</Link></Navbar.Brand>
-            <div>
-                <p>Welcome: {props.name}</p>
-                <p>Email: {props.email}</p>
-            </div>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav>
+                        <div>
+                            <p>User: {props.name}</p>
+                            <p>Email: {props.email}</p>
+                        </div>
                         <Nav.Link href="eventform">Create Event</Nav.Link>
                         <Nav.Link eventKey={2} href="events">
                             Events

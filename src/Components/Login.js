@@ -8,8 +8,7 @@ const clientId = "422134929902-nl2c86n17fm0nrk2kkvt3sl8v4cf39h3.apps.googleuserc
 
 const Login = ({ user, setUser }) => {
   const onSuccess = (res) => {
-    axios
-      .post("/auth/signin", {
+    axios.post("/auth/signin", {
         id_token: res.getAuthResponse().id_token,
       })
       .then((res) => {
@@ -53,6 +52,3 @@ const Login = ({ user, setUser }) => {
 };
 
 export default Login;
-
-// import { Link } from 'react-router-dom';
-{/* <div><Link to='/'>Home</Link></div> */}
